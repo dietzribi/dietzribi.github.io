@@ -53,6 +53,13 @@ h6 {
   background-size: cover;
 }
 
+.tj {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("img/tjbg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .masthead h1 {
   font-size: 4rem;
   margin: 0;
@@ -104,4 +111,31 @@ a:hover, a:focus, a:active {
     display: none;
     visibility: hidden;
   }
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #1b1738;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #823176;
+  color: white;
 }
