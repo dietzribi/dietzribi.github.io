@@ -108,6 +108,12 @@ a:hover, a:focus, a:active {
     width: 100%; /* Ensure container fills nav width */
 }
 
+.nav-left-group { /* New flex container for logo and social icons */
+    display: flex;
+    align-items: center; /* Vertically align logo and social icons */
+    gap: 0.75rem; /* Space between logo and social icons */
+}
+
 .nav-brand {
     display: flex;
     align-items: center;
@@ -128,6 +134,7 @@ a:hover, a:focus, a:active {
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     white-space: nowrap; /* Keep links on one line */
     padding-bottom: 5px; /* Space for scrollbar */
+    align-items: center; /* Vertically align all items in nav-links */
 }
 
 .nav-links a {
@@ -143,6 +150,30 @@ a:hover, a:focus, a:active {
     background-color: var(--hover-effect);
     color: var(--accent-color);
 }
+
+/* Styles for tiny social icons in navbar */
+.nav-social-icon {
+    font-size: 1.5rem; /* Make icon bigger */
+    padding: 0.25rem; /* Smaller padding for a tiny button look */
+    /* margin-left removed, now using gap on nav-left-group */
+    color: var(--light-text); /* Default color */
+    background: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Make it round */
+    width: 2.5rem; /* Fixed width for round button */
+    height: 2.5rem; /* Fixed height for round button */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-social-icon:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Subtle hover background */
+    color: var(--accent-color); /* Highlight color on hover */
+    transform: scale(1.1); /* Slight enlarge on hover */
+}
+
 
 /* --- Font Awesome Icons --- */
 /* Make Font Awesome icons bigger and ensure correct weight */
@@ -297,20 +328,21 @@ a:hover, a:focus, a:active {
     h2 { font-size: 1.8rem; } /* Reverted for mobile */
     .hero-logo { max-width: 90%; }
 
-    .btn {
-        width: calc(100% - 30px); /* Account for 15px padding on container */
-        margin: 0.5rem auto; /* Center buttons and add vertical margin */
-        font-size: 0.8rem; /* Reverted for mobile */
-        padding: 0.7rem 1.2rem; /* Reverted for mobile */
-    }
-
     .social-buttons {
         display: flex;
-        flex-direction: column;
-        align-items: center; /* Center buttons horizontally */
+        flex-direction: row; /* Keep buttons on one line */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        justify-content: center; /* Center buttons horizontally */
         width: 100%; /* Ensure social buttons container takes full width */
         padding: 0 15px; /* Add horizontal padding to prevent overflow */
         box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    .btn {
+        flex-shrink: 0; /* Prevent buttons from shrinking too much */
+        margin: 0.5rem; /* Adjust margin for mobile */
+        font-size: 0.8rem; /* Reverted for mobile */
+        padding: 0.7rem 1.2rem; /* Reverted for mobile */
     }
 
     .main-nav .container {
