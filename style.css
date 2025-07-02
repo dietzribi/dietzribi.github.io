@@ -185,7 +185,7 @@ a:hover, a:focus, a:active {
 
 /* Specific backgrounds for each game section */
 .uvsu-bg {
-    background: linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(80, 40, 90, 0.7)), url("img/uvsubg.jpg") no-repeat center center / cover; /* Placeholder for UVSU */
+    background: linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(80, 40, 90, 0.7)), url("img/uvsubg.jpg") no-repeat center center / cover; /* Using actual image path */
 }
 
 .toodee-bg {
