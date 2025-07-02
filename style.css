@@ -10,6 +10,7 @@
     --muted-text: #a0a0a0;
     --border-color: rgba(255, 255, 255, 0.1);
     --hover-effect: rgba(255, 255, 255, 0.08);
+    --nav-height: 4.5rem; /* Approximate height of the sticky navigation */
 }
 
 /* --- Base Styles --- */
@@ -83,7 +84,6 @@ a:hover, a:focus, a:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Removed height: 100%; to prevent potential iframe rendering issues */
 }
 
 /* --- Navigation --- */
@@ -95,12 +95,16 @@ a:hover, a:focus, a:active {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    height: var(--nav-height); /* Explicit height for nav */
+    display: flex; /* Ensure flex properties apply */
+    align-items: center; /* Vertically align content in nav */
 }
 
 .main-nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* Ensure container fills nav width */
 }
 
 .nav-brand {
@@ -110,7 +114,17 @@ a:hover, a:focus, a:active {
     padding: 0.5rem 0;
 }
 
+.nav-links {
+    display: flex;
+    /* For horizontal scroll on mobile */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    white-space: nowrap; /* Keep links on one line */
+    padding-bottom: 5px; /* Space for scrollbar */
+}
+
 .nav-links a {
+    flex-shrink: 0; /* Prevent links from shrinking */
     color: var(--light-text);
     padding: 0.5rem 1rem;
     margin-left: 1rem;
@@ -123,7 +137,19 @@ a:hover, a:focus, a:active {
     color: var(--accent-color);
 }
 
-/* --- Game Sections (Replaces Masthead) --- */
+/* --- Font Awesome Icons --- */
+/* Make Font Awesome icons bigger and ensure correct weight */
+.btn i {
+    font-size: 1.3em; /* Increased icon size */
+    vertical-align: middle; /* Align icon nicely with text */
+}
+
+.fab, .fas {
+    font-weight: 400; /* Regular weight for Font Awesome icons (often used for solid/brands) */
+}
+
+
+/* --- Game Sections --- */
 .game-section {
     min-height: 80vh; /* Reduced from 100vh to lessen empty space */
     padding: 4rem 0; /* Reduced padding to lessen empty space */
@@ -135,6 +161,7 @@ a:hover, a:focus, a:active {
     box-shadow: inset 0 -10px 20px rgba(0,0,0,0.5); /* Subtle shadow at bottom */
     margin-bottom: 2rem; /* Space between sections */
     overflow: hidden; /* Ensure background doesn't overflow */
+    scroll-margin-top: var(--nav-height); /* Account for sticky nav height when scrolling to anchor */
 }
 
 .game-section:last-of-type {
@@ -157,6 +184,10 @@ a:hover, a:focus, a:active {
 }
 
 /* Specific backgrounds for each game section */
+.uvsu-bg {
+    background: linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(80, 40, 90, 0.7)), url("img/uvsubg.jpg") no-repeat center center / cover; /* Placeholder for UVSU */
+}
+
 .toodee-bg {
     background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(65, 25, 60, 0.7)), url("img/bg.jpg") no-repeat center center / cover;
 }
@@ -260,34 +291,46 @@ a:hover, a:focus, a:active {
     .hero-logo { max-width: 90%; }
 
     .btn {
-        width: calc(100% - 1rem); /* Make buttons stack better on mobile */
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
+        width: calc(100% - 30px); /* Account for 15px padding on container */
+        margin: 0.5rem auto; /* Center buttons and add vertical margin */
         font-size: 0.8rem;
         padding: 0.7rem 1.2rem;
     }
 
-    .btn-social, .btn-steam-big {
-        margin-bottom: 1rem; /* Add space between stacked buttons */
+    .social-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center buttons horizontally */
+        width: 100%; /* Ensure social buttons container takes full width */
+        padding: 0 15px; /* Add horizontal padding to prevent overflow */
+        box-sizing: border-box; /* Include padding in width calculation */
     }
 
     .main-nav .container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Center items in nav bar */
+        text-align: center; /* Center text within nav links */
     }
 
-    .nav-brand {
-        margin-bottom: 0.5rem;
+    .nav-links {
+        display: flex;
+        flex-direction: row; /* Keep horizontal */
+        width: 100%; /* Allow it to take full width */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        white-space: nowrap; /* Prevent wrapping */
+        justify-content: center; /* Center links if space allows */
+        padding-bottom: 5px; /* Space for scrollbar */
     }
 
     .nav-links a {
-        margin-left: 0;
-        margin-right: 1rem;
+        flex-shrink: 0; /* Prevent links from shrinking */
+        margin: 0 0.5rem; /* Adjust horizontal margin for stacked links */
         padding: 0.5rem 0.8rem;
     }
 
     .game-section {
-        padding-top: 4rem; /* Less padding on top for smaller screens */
+        padding-top: calc(4rem + var(--nav-height)); /* Add nav height to top padding for scroll offset */
         min-height: unset; /* Allow height to be content-driven on mobile */
     }
 }
